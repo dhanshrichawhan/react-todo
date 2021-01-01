@@ -1,21 +1,82 @@
-.main {
+body {
+  margin: 0;
+  padding: 0;
+  font-family: cursive;
+}
+
+.App {
+  height: 100vh;
+  width: auto;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  justify-content: center;
+  padding-top: 150px;
   align-items: center;
+  background: linear-gradient(to right, lightgreen, lightcoral);
 }
 
-.container {
+h1 {
+  font-size: 4.5rem;
+}
+
+.input-button input {
+  width: 170px;
+  height: 40px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.459);
+}
+
+.input-button button {
+  height: 45px;
+  width: 100px;
+  background: linear-gradient(to right, rgb(172, 62, 62), rgb(49, 134, 49));
+  color: white;
+  border: 1px solid black;
+  outline: none;
+}
+
+.input-button button:hover {
+  cursor: pointer;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+.todos {
+  padding-top: 30px;
+}
+
+.incomplete-tasks {
+  padding-bottom: 10px;
+}
+
+.todo {
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  max-width: 600px;
-  justify-content: center;
+  flex-direction: row;
 }
 
-.heading {
+.todo .todo-checkbox {
+  margin-right: 1rem;
+  margin-top: 2rem;
+}
+
+.todo .todo-text {
+  font-size: 1.3rem;
   font-weight: bold;
-  font-size: large;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+@media screen and (min-width: 600px) {
+  .input-button input {
+    width: 300px;
+  }
+  .todos {
+    display: inline-flex;
+  }
+  .incomplete-tasks {
+    margin-right: 100px;
+  }
 }

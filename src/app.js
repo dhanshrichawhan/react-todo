@@ -35,59 +35,68 @@ function App() {
   };
 
   return (
-    <div className="main">
-      <div className="container">
-        <h1 className="heading">Tasks</h1>
+    <div className="App">
+      <h1>Tasks</h1>
+      <div className="input-button">
+        <input
+          name="todo"
+          type="text"
+          placeholder="Add new todo..."
+          value={currentTodo}
+          onChange={onChangeHandler}
+          onKeyDown={onKeyDownHandler}
+        />
+        <button onClick={clearAllHandler}>Clear All</button>
+      </div>
 
-        <div>
-          <input
-            name="todo"
-            type="text"
-            placeholder="Add new todo..."
-            value={currentTodo}
-            onChange={onChangeHandler}
-            onKeyDown={onKeyDownHandler}
-          />
-
-          <button onClick={clearAllHandler}>clear all</button>
+      <div className="todos">
+        <div className="incomplete-tasks">
+          <h3>Incomplete Tasks:</h3>
+          {todos
+            .filter(({ completed }) => !completed)
+            .map(({ id, ...todo }) => (
+              <Todo
+                key={id}
+                statusChangeHandler={() => statusChangeHandler(id)}
+                {...todo}
+              />
+            ))}
         </div>
 
-        <div>
-          <p>Incomplete Tasks</p>
-          <ul className="list incomplete">
-            {todos
-              .filter(({ completed }) => !completed)
-              .map(({ id, ...todo }) => (
-                <Todo
-                  key={id}
-                  statusChangeHandler={() => statusChangeHandler(id)}
-                  {...todo}
-                />
-              ))}
-          </ul>
-        </div>
-
-        <div>
-          <p>Completed Tasks</p>
-          <ul className="list incomplete">
-            {todos
-              .filter(({ completed }) => completed)
-              .map(({ id, ...todo }) => (
-                <Todo
-                  key={id}
-                  statusChangeHandler={() => statusChangeHandler(id)}
-                  {...todo}
-                />
-              ))}
-          </ul>
+        <div className="complete-tasks">
+          <h3>Completed Tasks:</h3>
+          {todos
+            .filter(({ completed }) => completed)
+            .map(({ id, ...todo }) => (
+              <Todo
+                key={id}
+                statusChangeHandler={() => statusChangeHandler(id)}
+                {...todo}
+              />
+            ))}
         </div>
       </div>
     </div>
   );
 }
 
-function Todo({ todo, statusChangeHandler }) {
-  return <li onClick={statusChangeHandler}>{todo}</li>;
+function Todo({ todo, completed, statusChangeHandler }) {
+  return (
+    <div className="todo">
+      <input
+        className="todo-checkbox"
+        type="checkbox"
+        defaultChecked={completed}
+        onChange={statusChangeHandler}
+      />
+      <p
+        className={`todo-text ${completed ? 'completed' : ''}`}
+        onClick={statusChangeHandler}
+      >
+        {todo}
+      </p>
+    </div>
+  );
 }
 
 export default App;
