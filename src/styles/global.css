@@ -9,7 +9,7 @@ body {
   width: auto;
   display: flex;
   flex-direction: column;
-  padding-top: 150px;
+  padding-top: 100px;
   align-items: center;
   background: linear-gradient(to right, lightgreen, lightcoral);
 }
